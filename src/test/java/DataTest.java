@@ -8,7 +8,7 @@ public class DataTest {
     ThirdPartyLibrary thirdPartyLibrary=new ThirdPartyLibrary();
 
     @Test
-    public void data(){
+    public void join_excel(){
         try {
             thirdPartyLibrary.into_excel(DataBaseConifg.getConnection(),"select * from user");
         }catch (Exception e){e.printStackTrace();}
