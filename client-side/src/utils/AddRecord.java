@@ -2,7 +2,7 @@ package utils;
 
 import java.io.*;
 
-public class AddRecord {
+public class AddRecord{
 
     String nickname;
     String accountNumber;

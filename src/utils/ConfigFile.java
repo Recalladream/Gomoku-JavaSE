@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -6,7 +8,7 @@ public class ConfigFile {
 
     static {
         try {
-            InputStream input = ConfigFile.class.getClassLoader().getResourceAsStream("config.properties");
+            InputStream input =new FileInputStream("resource//config.properties");
             properties = new Properties();
             properties.load(input);
         } catch (Exception e) {

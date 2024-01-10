@@ -3,7 +3,13 @@ package utils;
 import java.security.MessageDigest;
 
 public class MD5 {
-    public static String md5(String source) {
+    private static MD5 md5=new MD5();
+
+    public static MD5 getMD5(){
+        return md5;
+    }
+
+    public String encipher(String source) {
 
         StringBuffer sb = new StringBuffer(32);
 

@@ -234,7 +234,7 @@ public class Register {
                         enrobut.setText("验证码错误");
                     }
                     else{
-                        String jmmima= MD5.md5(pass1);
+                        String jmmima= MD5.getMD5().encipher(pass1);
 
                         InforMationSet putinfjh=new InforMationSet();
                         putinfjh.setFunction("User_register");

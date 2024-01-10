@@ -83,10 +83,6 @@ public class Norm {
             tsLa.setText("密码错误");
             jgLa.setText("9-11位数字、字母,无特殊字符,0不能开头");
         }
-        if (gn==3){
-            tsLa.setText("群ID错误");
-            jgLa.setText("9-11位数字,0不能开头");
-        }
 
         gfjm.setVisible(true);
     }

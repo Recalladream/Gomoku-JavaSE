@@ -231,7 +231,7 @@ public class LoginInter {
                     if(account.equals("")||password.equals(""))
                         dru.setText("账号或密码不能为空");
                     else{
-                        String jmmima= MD5.md5(password);
+                        String jmmima= MD5.getMD5().encipher(password);
 
                         InforMationSet putinfjh=new InforMationSet();
                         putinfjh.setFunction("Login_check");

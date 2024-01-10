@@ -19,5 +19,12 @@
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.82" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.webjars:jquery:3.7.1" level="project" />
     <orderEntry type="module" module-name="server-side" scope="TEST" />
+    <orderEntry type="library" name="poi-5.2.3" level="project" />
+    <orderEntry type="library" name="commons-codec-1.15" level="project" />
+    <orderEntry type="library" name="poi-bin-5.2" level="project" />
+    <orderEntry type="library" name="auxiliary" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="ooxml-lib" level="project" />
+    <orderEntry type="module" module-name="client-side" scope="TEST" />
   </component>
 </module>

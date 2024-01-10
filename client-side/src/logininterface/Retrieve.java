@@ -193,7 +193,7 @@ public class Retrieve {
                     if (xma.equals(""))
                         findh.setText("新密码为空");
                     else {
-                        String jmmima= MD5.md5(xma);
+                        String jmmima= MD5.getMD5().encipher(xma);
 
                         InforMationSet putinfjh = new InforMationSet();
                         putinfjh.setFunction("Account_retrieval");
@@ -398,8 +398,8 @@ public class Retrieve {
                     if (codema.equals("")||!codema.equals(wgcodesmg.getText()))
                         change.setText("验证码错误");
                     else {
-                        String yjmmima=MD5.md5(ypass);
-                        String xjmmima=MD5.md5(xpass);
+                        String yjmmima=MD5.getMD5().encipher(ypass);
+                        String xjmmima=MD5.getMD5().encipher(xpass);
 
 
                         InforMationSet putinfjh = new InforMationSet();

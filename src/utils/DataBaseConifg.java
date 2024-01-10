@@ -6,7 +6,7 @@ public class DataBaseConifg {
 
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             String url=ConfigFile.getProperty("database.url");
             String name=ConfigFile.getProperty("database.name");
