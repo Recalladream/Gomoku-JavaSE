@@ -2,6 +2,7 @@ import dao.DataBase;
 import dao.ThirdPartyLibrary;
 import logininterface.LoginInter;
 import org.junit.Test;
+import utils.DataBaseConifg;
 
 public class DataTest {
     DataBase dataBase=new DataBase(DataBaseConifg.getConnection());

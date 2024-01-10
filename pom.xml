@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.gomoku</groupId>
-    <artifactId>my-project</artifactId>
+    <artifactId>Gomoku</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <!-- 添加项目依赖 -->

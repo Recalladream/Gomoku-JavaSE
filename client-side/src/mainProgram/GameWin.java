@@ -1,7 +1,6 @@
 package mainProgram;
 
-import utils.InforMationSet;
-import utils.Normal;
+import utils.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

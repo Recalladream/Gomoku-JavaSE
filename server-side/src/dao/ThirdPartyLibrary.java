@@ -40,7 +40,7 @@ public class ThirdPartyLibrary {
             }
 
             try {
-                FileOutputStream fileOutputStream = new FileOutputStream("resource//output.xlsx");
+                FileOutputStream fileOutputStream = new FileOutputStream("resource//user.xlsx");
                 workbook.write(fileOutputStream);
                 System.out.println("excel数据写入成功");
             } catch (IOException e) {
