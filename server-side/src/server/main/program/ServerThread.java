@@ -7,9 +7,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ServerThread extends Thread{
+    ArrayList<String> yhztlist;
     HashMap<String,Socket>map;
     HashMap<Socket,ObjectOutputStream>putmap;
     HashMap<String,String>matchmap;
@@ -26,9 +28,10 @@ public class ServerThread extends Thread{
         }catch (Exception e){e.printStackTrace();}
     }
 
-    public ServerThread(Socket KH, HashMap<String,Socket> map, HashMap<Socket,ObjectOutputStream>putmap,HashMap<String,String>matchmap,Connection con){
+    public ServerThread(Socket KH,ArrayList<String> yhztlist,HashMap<String,Socket> map, HashMap<Socket,ObjectOutputStream>putmap,HashMap<String,String>matchmap,Connection con){
         try {
             this.KH=KH;
+            this.yhztlist=yhztlist;
             this.map=map;
             this.putmap=putmap;
             this.matchmap=matchmap;
@@ -49,7 +52,7 @@ public class ServerThread extends Thread{
                 }
                 else {
                     InforMationSet getinfjh = (InforMationSet) obgetkh.readObject();
-                    InformationClassification inffl = new InformationClassification(getinfjh,KH,obputkh,map,putmap,matchmap,bdjs,con);
+                    InformationClassification inffl = new InformationClassification(getinfjh,KH,obputkh,yhztlist,map,putmap,matchmap,bdjs,con);
                     inffl.functionalresolution();
                 }
             }catch (Exception e){e.printStackTrace();}

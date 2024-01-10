@@ -11,11 +11,13 @@ import javax.swing.text.html.HTMLDocument;
 import java.io.*;
 import java.net.Socket;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class InformationClassification {
+    ArrayList<String> yhztlist;
     HashMap<String,Socket>map;
     HashMap<Socket,ObjectOutputStream>putmap;
     HashMap<String,String>matchmap;
@@ -25,10 +27,11 @@ public class InformationClassification {
     ObjectOutputStream obputkh;
     InforMationSet bdjs;
 
-    public InformationClassification(InforMationSet getinfjh, Socket KH, ObjectOutputStream obputkh, HashMap<String,Socket>map, HashMap<Socket,ObjectOutputStream>putmap, HashMap<String,String>matchmap, InforMationSet bdjs,Connection con){
+    public InformationClassification(InforMationSet getinfjh, Socket KH, ObjectOutputStream obputkh,ArrayList<String> yhztlist,HashMap<String,Socket>map, HashMap<Socket,ObjectOutputStream>putmap, HashMap<String,String>matchmap, InforMationSet bdjs,Connection con){
         this.KH=KH;
         this.getinfjh=getinfjh;
         this.obputkh=obputkh;
+        this.yhztlist=yhztlist;
         this.map=map;
         this.putmap=putmap;
         this.matchmap=matchmap;
@@ -87,26 +90,14 @@ public class InformationClassification {
         return ID;
     }
 
-    public void onLine(String userid){
-        try {
-            String account=userid;
+    public String checkYhztList(String userid){
+        for (String account:yhztlist){
+            if (account.equals(userid)){
+                return "4";
+            }
+        }
 
-            DataBase dataBase=new DataBase(con);
-
-            dataBase.online(account);
-        }catch (Exception e){e.printStackTrace();}
-    }
-
-    public void offLine(String userid){
-        try {
-            String account=userid;
-
-            DataBase dataBase=new DataBase(con);
-
-            dataBase.offLine(account);
-
-            map.remove(account,KH);
-        }catch (Exception e){e.printStackTrace();}
+        return "0";
     }
 
     public void functionalresolution(){
@@ -238,7 +229,7 @@ public class InformationClassification {
 
         if (function.equals("off_line")){
             String account=getinfjh.getUserid();
-            offLine(account);
+            yhztlist.remove(account);
             closeSocket();
         }
 
@@ -396,8 +387,12 @@ public class InformationClassification {
                 String account=getinfjh.getUserid();
                 String pass=getinfjh.getUserpass();
 
-                DataBase dataBase=new DataBase(con);
-                String state=dataBase.loginCheck(account,pass);
+                String state=checkYhztList(account);
+
+                if ("0".equals(state)) {
+                    DataBase dataBase = new DataBase(con);
+                    state = dataBase.loginCheck(account, pass);
+                }
 
                 InforMationSet putinfjh=new InforMationSet();
                 putinfjh.setCzstate(state);
@@ -406,7 +401,7 @@ public class InformationClassification {
                 obputkh.flush();
 
                 if (!state.equals("2")&&!state.equals("3")&&!state.equals("4")){
-                    onLine(account);
+                    yhztlist.add(account);
                     closeSocket();
                 }
             }catch (Exception e){e.printStackTrace();}

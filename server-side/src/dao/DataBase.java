@@ -124,26 +124,26 @@ public class DataBase {
 
     private void joinUser(String account,String password){
         try {
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date=new Date();
-            String time=sdf.format(date);
-
-            smg="insert into user(account,password,joindate) values(?,?,?)";
+            smg="insert into user(account,password) values(?,?)";
             pcz=con.prepareStatement(smg);
             pcz.setString(1,account);
             pcz.setString(2,password);
-            pcz.setString(3,time);
             pcz.executeUpdate();
         }catch (Exception e){e.printStackTrace();}
     }
     private void joinUserInf(String account,String nickname,String telephone,String mail){
         try {
-            smg="insert into userinf(account,nickname,telephone,mailbox) values(?,?,?,?)";
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date=new Date();
+            String time=sdf.format(date);
+
+            smg="insert into userinf(account,nickname,telephone,mailbox,joindate) values(?,?,?,?,?)";
             pcz=con.prepareStatement(smg);
             pcz.setString(1,account);
             pcz.setString(2,nickname);
             pcz.setString(3,telephone);
             pcz.setString(4,mail);
+            pcz.setString(5,time);
             pcz.executeUpdate();
         }catch (Exception e){e.printStackTrace();}
     }
@@ -172,26 +172,6 @@ public class DataBase {
         return "3";
     }
 
-    public void online(String account){
-        try {
-            smg="update user set off_line = ? where account = ?";
-            pcz=con.prepareStatement(smg);
-            pcz.setInt(1,1);
-            pcz.setString(2,account);
-            pcz.executeUpdate();
-        }catch (Exception e){e.printStackTrace();}
-    }
-
-    public void offLine(String account){
-        try {
-            smg="update user set off_line = ? where account = ?";
-            pcz=con.prepareStatement(smg);
-            pcz.setInt(1,0);
-            pcz.setString(2,account);
-            pcz.executeUpdate();
-        }catch (Exception e){e.printStackTrace();}
-    }
-
     public String loginCheck(String account,String pass){
         try {
             smg="select * from user where account = ?";
@@ -199,22 +179,19 @@ public class DataBase {
             pcz.setString(1,account);
 
             find=pcz.executeQuery();
-            find.next();
 
-            String user_account=find.getString("account");
-            String user_pass=find.getString("password");
-            boolean user_off_line=find.getBoolean("off_line");
+            if (find.next()){
+                String user_account=find.getString("account");
+                String user_pass=find.getString("password");
 
-            if (user_account.equals(account))
-                if (user_pass.equals(pass)){
-                    if (user_off_line)
-                        return "4";
-
-                    return getName(account);
-                }
-                else{
-                    return "2";
-                }
+                if (user_account.equals(account))
+                    if (user_pass.equals(pass)){
+                        return getName(account);
+                    }
+                    else{
+                        return "2";
+                    }
+            }
         }catch (Exception e){e.printStackTrace();}
         return "3";
     }
