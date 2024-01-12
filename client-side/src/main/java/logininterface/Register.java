@@ -11,6 +11,9 @@ import java.awt.event.MouseEvent;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 注册界面
+ */
 public class Register {
     ObjectOutputStream obputFW;
     ObjectInputStream obgetFW;
@@ -28,6 +31,19 @@ public class Register {
     JButton zccodebut;
     JLabel zccodesmg;
 
+    /**
+     * 构造方法
+     * @param dluck
+     * @param pan
+     * @param bjLab
+     * @param zccodesmg
+     * @param zbox
+     * @param drimage
+     * @param zcimage
+     * @param zccodebut
+     * @param obputFW
+     * @param obgetFW
+     */
     public Register(JFrame dluck,JPanel pan,JLabel bjLab,JLabel zccodesmg,Box zbox,ImageIcon drimage,ImageIcon zcimage,JButton zccodebut,ObjectOutputStream obputFW,ObjectInputStream obgetFW){
         this.dluck=dluck;
         this.pan=pan;
@@ -42,10 +58,16 @@ public class Register {
         initzj();
     }
 
+    /**
+     * 初始化组件
+     */
     private void initzj(){
         fbox=Box.createVerticalBox();
     }
 
+    /**
+     * 注册界面绘制
+     */
     public void registrationInterface(){
         dluck.setTitle("用户注册");
 

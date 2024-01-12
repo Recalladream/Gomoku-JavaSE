@@ -12,6 +12,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * 对局界面
+ */
 public class OnLineMatch extends JFrame {
     GameWin gameWin;
 
@@ -41,6 +44,9 @@ public class OnLineMatch extends JFrame {
     JButton jsbut;
     int jsjl[]=new int[1];
 
+    /**
+     * 初始化棋子
+     */
     public void initqz(){
         try {
             File blackqzfile=new File("E:\\java\\java代码\\Gomoku\\client-side\\src\\main\\resource\\黑子.jpg");
@@ -51,6 +57,17 @@ public class OnLineMatch extends JFrame {
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 构造方法
+     * @param kind
+     * @param userID
+     * @param socket
+     * @param obputFW
+     * @param obgetFW
+     * @param usernmae
+     * @param desname
+     * @param gameWin
+     */
     public OnLineMatch(int kind,String userID,Socket socket,ObjectOutputStream obputFW,ObjectInputStream obgetFW,String usernmae,String desname,GameWin gameWin){
         this.kind=kind;
         this.userID=userID;
@@ -69,6 +86,9 @@ public class OnLineMatch extends JFrame {
         }
     }
 
+    /**
+     * 将下棋信息发给服务器
+     */
     public void transFerPiece(){
         try {
             InforMationSet putinf=new InforMationSet();
@@ -83,6 +103,9 @@ public class OnLineMatch extends JFrame {
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 绘制界面
+     */
     public void window(){
         //设置联机对决窗口属性
         this.setTitle("五子棋");
@@ -146,6 +169,10 @@ public class OnLineMatch extends JFrame {
         });
     }
 
+    /**
+     * 通过鼠标点击坐标计算下棋位置
+     * @param kind
+     */
     void qzjs(int kind)
     {
         try {
@@ -176,6 +203,10 @@ public class OnLineMatch extends JFrame {
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 界面棋子绘制
+     * @param g2d
+     */
     void qzdraw(Graphics2D g2d)
     {
         for (int i = 0; i < 15; i++)
@@ -192,6 +223,11 @@ public class OnLineMatch extends JFrame {
             }
     }
 
+    /**
+     * 悔棋检测
+     * @param hqbut
+     * @return
+     */
     public int[] penitenceCheck(JButton hqbut){
         int hqjl[]=new int[4];
         int max1=0,max2=0;
@@ -219,6 +255,10 @@ public class OnLineMatch extends JFrame {
         return hqjl;
     }
 
+    /**
+     * 初始化组件
+     * @param xxjp
+     */
     public void initModule(JPanel xxjp){
         jsmzbut=new JButton();
         switch (kind){
@@ -270,6 +310,9 @@ public class OnLineMatch extends JFrame {
     }
 }
 
+/**
+ * 接收服务器端发来的对手下棋信息线程类
+ */
 class receivingPiece extends Thread{
     int qpjl[][];
     int qzjl[][];
@@ -290,6 +333,25 @@ class receivingPiece extends Thread{
     JButton jsbut;
     int jsjl[];
 
+    /**
+     * 构造发法
+     * @param qpjl
+     * @param qzjl
+     * @param qznum
+     * @param xqzt
+     * @param winjudg
+     * @param points
+     * @param userid
+     * @param username
+     * @param jsmzbut
+     * @param jsbut
+     * @param jsjskz
+     * @param jsjl
+     * @param onLineMatch
+     * @param server
+     * @param obgetFW
+     * @param obputFW
+     */
     public receivingPiece(int qpjl[][],int qzjl[][],int qznum[],Boolean xqzt[],int winjudg[],int points[],String userid,String username,JButton jsmzbut,JButton jsbut,Boolean jsjskz[],int jsjl[],OnLineMatch onLineMatch,Socket server,ObjectInputStream obgetFW,ObjectOutputStream obputFW){
         this.qpjl=qpjl;
         this.qzjl=qzjl;
@@ -309,6 +371,12 @@ class receivingPiece extends Thread{
         this.jsjl=jsjl;
     }
 
+    /**
+     * 棋子计算
+     * @param kind
+     * @param qzx
+     * @param qzy
+     */
     void qzjs(int kind,int qzx,int qzy)
     {
         try {
@@ -340,6 +408,9 @@ class receivingPiece extends Thread{
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 对手认输处理
+     */
     public void runaway(){
         try {
             points[0]=RandomIntegral.getIntegral(true);
@@ -357,6 +428,10 @@ class receivingPiece extends Thread{
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 对方悔棋处理
+     * @param hqjl
+     */
     public void penitence(int hqjl[]){
         qzjl[hqjl[0]][hqjl[1]]=qpjl[hqjl[0]][hqjl[1]]=0;
         qzjl[hqjl[2]][hqjl[3]]=qpjl[hqjl[2]][hqjl[3]]=0;
@@ -367,12 +442,18 @@ class receivingPiece extends Thread{
         onLineMatch.repaint();
     }
 
+    /**
+     * 关闭socket
+     */
     public void closeSocket(){
         try {
             server.close();
         }catch (Exception E){E.printStackTrace();}
     }
 
+    /**
+     * 线程执行体
+     */
     @Override
     public void run() {
         try {

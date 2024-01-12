@@ -13,6 +13,8 @@ import java.util.HashMap;
 public class ServerMain {
     public static void main(String[]args){
         try {
+            ThreadPoolManagement pool=new ThreadPoolManagement();
+
             Connection con= DataBaseConifg.getConnection();
 
             ArrayList<String> yhztlist=new ArrayList<String>();
@@ -22,8 +24,8 @@ public class ServerMain {
 
             ServerSocket server=new ServerSocket(3998);
             while(true) {
-                ServerThread creat=new ServerThread(server.accept(),yhztlist,map,putmap,matchmap,con);
-                creat.start();
+                Runnable creat=new ServerThread(server.accept(),yhztlist,map,putmap,matchmap,con);
+                pool.submit(creat);
             }
         }catch (Exception e){e.printStackTrace();}
     }

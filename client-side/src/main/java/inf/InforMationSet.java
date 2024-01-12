@@ -2,6 +2,9 @@ package inf;
 
 import java.io.Serializable;
 
+/**
+ * 网络通信实体类
+ */
 public class InforMationSet implements Serializable {
     private String function;
 

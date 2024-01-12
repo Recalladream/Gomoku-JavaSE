@@ -7,6 +7,9 @@ import java.awt.*;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 从服务器端获取验证码线程
+ */
 public class GetVerificationCode extends Thread{
 
     String func;
@@ -15,6 +18,14 @@ public class GetVerificationCode extends Thread{
     ObjectOutputStream obputFW;
     ObjectInputStream obgetFW;
 
+    /**
+     * 构造方法
+     * @param func
+     * @param mail
+     * @param codesmg
+     * @param obputFW
+     * @param obgetFW
+     */
     public GetVerificationCode(String func,String mail,JLabel codesmg,ObjectOutputStream obputFW, ObjectInputStream obgetFW){
         this.func=func;
         this.mail=mail;
@@ -23,6 +34,9 @@ public class GetVerificationCode extends Thread{
         this.obgetFW=obgetFW;
     }
 
+    /**
+     * 线程执行体
+     */
     public void run(){
         try {
         InforMationSet putinfjh = new InforMationSet();

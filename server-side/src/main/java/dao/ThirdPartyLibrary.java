@@ -9,6 +9,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ *
+ */
 public class ThirdPartyLibrary {
     public void into_excel(Connection con,String sql) throws SQLException {
 

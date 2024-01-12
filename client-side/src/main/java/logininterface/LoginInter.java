@@ -15,6 +15,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * 登录界面
+ */
 public class LoginInter {
     private static Socket server;
     private static ObjectOutputStream obputFW;
@@ -41,6 +44,9 @@ public class LoginInter {
     private static JButton wzcodebut=new JButton("获得");
     private static JButton wgcodebut=new JButton("获得");
 
+    /**
+     * 初始化socket
+     */
     public static void initsocket(){
         try {
             server=new Socket("127.0.0.1",3998);
@@ -48,12 +54,19 @@ public class LoginInter {
             obgetFW=new ObjectInputStream(server.getInputStream());
         }catch (Exception e){e.printStackTrace();}
     }
+
+    /**
+     * 关闭socket
+     */
     public static void closeSocket(){
         try {
             server.close();
         }catch (Exception E){E.printStackTrace();}
     }
 
+    /**
+     * 初始化图片
+     */
     public static void initImage(){
         bjLab=new JLabel();
         drimage=new ImageIcon("E:\\java\\java代码\\Gomoku\\client-side\\src\\main\\resource\\登录背景.png");
@@ -64,6 +77,9 @@ public class LoginInter {
         xsimage=new ImageIcon("E:\\java\\java代码\\Gomoku\\client-side\\src\\main\\resource\\Display.png");
     }
 
+    /**
+     * 登录界面绘制
+     */
     public static void login(){
         initImage();
         initsocket();

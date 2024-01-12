@@ -1,6 +1,17 @@
 package client_utils;
 
+/**
+ * 检测下棋胜利
+ */
 public class VictoryCheck {
+    /**
+     * 检测方法
+     * @param qpjl
+     * @param kind
+     * @param fx
+     * @param fy
+     * @return
+     */
     public Boolean check(int qpjl[][],int kind,int fx,int fy){
         int js,f1,f2,jsx1,jsy1,jsx2,jsy2;
 

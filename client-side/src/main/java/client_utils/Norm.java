@@ -3,11 +3,17 @@ package client_utils;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * 检测用户注册或找回操作时的信息是否合规
+ */
 public class Norm {
 
-    public Norm(){
-
-    }
+    /**
+     * 检测是否合规方法
+     * @param wb
+     * @param gn
+     * @return
+     */
     public static boolean normAtiveJudgment(String wb,int gn){
         if (gn==1){
             char []a=wb.toCharArray();
@@ -49,6 +55,10 @@ public class Norm {
         return true;
     }
 
+    /**
+     * 提示信息
+     * @param gn
+     */
     public static void prompt(int gn){
         JFrame gfjm=new JFrame("注意");
         gfjm.setBounds(800,600,420,200);

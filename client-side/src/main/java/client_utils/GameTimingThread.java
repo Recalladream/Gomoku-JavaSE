@@ -6,6 +6,9 @@ import mainProgram.OnLineMatch;
 import javax.swing.*;
 import java.io.ObjectOutputStream;
 
+/**
+ * 游戏对局下棋到计时线程
+ */
 public class GameTimingThread extends Thread{
     String userid;
 
@@ -22,6 +25,18 @@ public class GameTimingThread extends Thread{
     Boolean jsjskz[];
     int jsjl[];
 
+    /**
+     * 构造方法
+     * @param userid
+     * @param jsbut
+     * @param jsjskz
+     * @param jsjl
+     * @param xqzt
+     * @param winjudg
+     * @param points
+     * @param onLineMatch
+     * @param obputFW
+     */
     public GameTimingThread(String userid,JButton jsbut, Boolean jsjskz[], int jsjl[], Boolean xqzt[], int winjudg[],int points[],OnLineMatch onLineMatch,ObjectOutputStream obputFW){
         this.userid=userid;
         this.jsbut=jsbut;
@@ -34,6 +49,9 @@ public class GameTimingThread extends Thread{
         this.obputFW=obputFW;
     }
 
+    /**
+     * 线程执行体
+     */
     @Override
     public void run() {
         try {

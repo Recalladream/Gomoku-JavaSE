@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * 对局界面一部的绘制类
+ */
 public class UniversalPane extends JPanel {
     int kind;
 
@@ -23,6 +26,17 @@ public class UniversalPane extends JPanel {
     JButton w1la;
     JButton w2la;
 
+    /**
+     * 构造方法
+     * @param kind
+     * @param qpjl
+     * @param winjudg
+     * @param points
+     * @param usernmae
+     * @param desname
+     * @param blackqz
+     * @param whiteqz
+     */
     public UniversalPane(int kind,int qpjl[][],int winjudg[],int points[],String usernmae,String desname,Image blackqz,Image whiteqz){
         this.kind=kind;
         this.qpjl=qpjl;
@@ -36,6 +50,10 @@ public class UniversalPane extends JPanel {
         bufferImage=new BufferedImage(860, 830, BufferedImage.TYPE_INT_RGB);
     }
 
+    /**
+     * 绘制棋子
+     * @param g2d
+     */
     void qzdraw(Graphics2D g2d)
     {
         for (int i = 0; i < 15; i++)
@@ -52,6 +70,10 @@ public class UniversalPane extends JPanel {
             }
     }
 
+    /**
+     * 初始化组件
+     * @param xxjp
+     */
     public void initModule(JPanel xxjp){
         w1la=new JButton();
         w1la.setBorderPainted(false);
@@ -71,6 +93,10 @@ public class UniversalPane extends JPanel {
         xxjp.add(w2la);
     }
 
+    /**
+     * 绘制棋盘
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         try {

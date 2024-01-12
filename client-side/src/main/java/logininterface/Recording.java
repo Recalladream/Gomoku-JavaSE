@@ -6,6 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 
+/**
+ * 历史记录操作管理
+ */
 class Recording {
     int k = 0;
     int wz;
@@ -28,6 +31,9 @@ class Recording {
     JTextField yhmk;
     JTextField mamk;
 
+    /**
+     * 初始化组件
+     */
     void initzj() {
         ncLa.setText(nc);
         ncLa.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -51,6 +57,9 @@ class Recording {
         sacu.setContentAreaFilled(false);
     }
 
+    /**
+     * 初始化组件事件
+     */
     void initact() {
 
         nczhbox.addMouseListener(new MouseAdapter() {

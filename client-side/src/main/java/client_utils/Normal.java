@@ -12,6 +12,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * 联机匹配
+ */
 public class Normal {
     GameWin gameWin;
 
@@ -27,6 +30,9 @@ public class Normal {
     ObjectOutputStream obputFW;
     ObjectInputStream obgetFW;
 
+    /**
+     * 初始化socket
+     */
     public void initsoket(){
         try {
             socket=new Socket("127.0.0.1",3998);
@@ -35,12 +41,22 @@ public class Normal {
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 关闭socket
+     */
     public void closeSocket(){
         try {
             socket.close();
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 构造方法
+     * @param userID
+     * @param username
+     * @param pdsz
+     * @param gameWin
+     */
     public Normal(String userID,String username,JLabel pdsz,GameWin gameWin){
         this.userID=userID;
         this.pdsz=pdsz;
@@ -50,6 +66,9 @@ public class Normal {
         initsoket();
     }
 
+    /**
+     * 匹配界面
+     */
     public void matchingInterface(){
         jm=new JFrame("匹配");
         jm.setLayout(null);
@@ -66,6 +85,9 @@ public class Normal {
         jm.setVisible(true);
     }
 
+    /**
+     * 进行匹配
+     */
     public void join(){
         try {
             matchingInterface();
@@ -98,6 +120,9 @@ public class Normal {
     }
 }
 
+/**
+ * 和服务器端联机匹配通信线程
+ */
 class Connect extends Thread{
     GameWin gameWin;
 
@@ -111,6 +136,19 @@ class Connect extends Thread{
     JLabel pdsz;
     Keeptime keeptime;
 
+    /**
+     * 构造方法
+     * @param socket
+     * @param obputFW
+     * @param obgetFW
+     * @param userID
+     * @param username
+     * @param jm
+     * @param jmgbcz
+     * @param pdsz
+     * @param keeptime
+     * @param gameWin
+     */
     public Connect(Socket socket,ObjectOutputStream obputFW,ObjectInputStream obgetFW,String userID,String username,JFrame jm,Boolean jmgbcz[],JLabel pdsz,Keeptime keeptime,GameWin gameWin){
         this.socket=socket;
         this.obgetFW=obgetFW;
@@ -124,12 +162,18 @@ class Connect extends Thread{
         this.gameWin=gameWin;
     }
 
+    /**
+     * 关闭socket
+     */
     public void closeSocket(){
         try {
             socket.close();
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 线程执行体
+     */
     @Override
     public void run() {
         try {
@@ -169,6 +213,9 @@ class Connect extends Thread{
     }
 }
 
+/**
+ * 匹配计时
+ */
 class Keeptime extends Thread{
     int a=0;
     private boolean bdjs=false;
@@ -178,6 +225,13 @@ class Keeptime extends Thread{
     ObjectOutputStream obputFW;
     JLabel pdsz;
 
+    /**
+     * 构造方法
+     * @param jm
+     * @param txla
+     * @param obputFW
+     * @param pdsz
+     */
     public Keeptime(JFrame jm, JLabel txla,ObjectOutputStream obputFW,JLabel pdsz){
         this.jm=jm;
         this.txla=txla;
@@ -185,10 +239,17 @@ class Keeptime extends Thread{
         this.pdsz=pdsz;
     }
 
+    /**
+     * 判断是否匹配结束
+     * @param bdjs
+     */
     public void setBdjs(boolean bdjs){
         this.bdjs=bdjs;
     }
 
+    /**
+     * 线程执行体
+     */
     @Override
     public void run() {
         try {

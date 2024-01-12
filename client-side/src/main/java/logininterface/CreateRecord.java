@@ -6,6 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 
+/**
+ * 创建登录历史
+ */
 public class CreateRecord{
     //
 
@@ -14,6 +17,13 @@ public class CreateRecord{
     JTextField yhmk;
     JTextField mamk;
 
+    /**
+     * 构造方法
+     * @param box
+     * @param lsjljm
+     * @param yhmk
+     * @param mamk
+     */
     CreateRecord(Box box,JFrame lsjljm,JTextField yhmk,JTextField mamk){
         this.box=box;
         this.lsjljm=lsjljm;
@@ -21,6 +31,9 @@ public class CreateRecord{
         this.mamk=mamk;
     }
 
+    /**
+     * 创建记录
+     */
     public void create(){
         try {
             int wz=0;

@@ -2,18 +2,30 @@ package client_utils;
 
 import java.io.*;
 
+/**
+ * 将用户登录记录存入记录文件
+ */
 public class AddRecord{
 
     String nickname;
     String accountNumber;
     String password;
 
+    /**
+     * 构造方法
+     * @param nickname
+     * @param accountNumber
+     * @param password
+     */
     public AddRecord(String nickname,String accountNumber,String password){
         this.nickname=nickname;
         this.accountNumber=accountNumber;
         this.password=password;
     }
 
+    /**
+     * 加入记录文件方法
+     */
     public void Joinrecord(){
         try {
             int k=0,x=0;

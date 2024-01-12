@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * 积分排行榜界面
+ */
 public class LeaderBoard {
     String username;
     String userpm;
@@ -18,6 +21,17 @@ public class LeaderBoard {
     Object tabinf[][];
 
     JLabel pdsz;
+
+    /**
+     * 构造方法
+     * @param username
+     * @param userpm
+     * @param userjf
+     * @param win
+     * @param lose
+     * @param tabinf
+     * @param pdsz
+     */
     public LeaderBoard(String username,String userpm,int userjf,int win,int lose,Object tabinf[][],JLabel pdsz){
         this.username=username;
         this.userpm=userpm;
@@ -28,6 +42,9 @@ public class LeaderBoard {
         this.pdsz=pdsz;
     }
 
+    /**
+     * 绘制排行榜方法
+     */
     public void leader(){
         JFrame jm=new JFrame("排行榜");
         jm.setLayout(null);

@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ServerThread extends Thread{
+public class ServerThread implements Runnable{
     ArrayList<String> yhztlist;
     HashMap<String,Socket>map;
     HashMap<Socket,ObjectOutputStream>putmap;

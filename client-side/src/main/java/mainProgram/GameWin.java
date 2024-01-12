@@ -16,6 +16,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * 游戏菜单界面
+ */
 public class GameWin extends JFrame {
     Socket server;
     ObjectOutputStream obputFW;
@@ -31,6 +34,10 @@ public class GameWin extends JFrame {
 
     JLabel pdsz=new JLabel("0");
 
+    /**
+     * @param account 构造方法
+     * @param username
+     */
     public GameWin(String account, String username){
         this.userID=account;
         this.username=username;
@@ -39,6 +46,9 @@ public class GameWin extends JFrame {
         initSocket();
     }
 
+    /**
+     * 初始化socket
+     */
     public void initSocket(){
         try {
             server=new Socket("127.0.0.1",3998);
@@ -47,12 +57,18 @@ public class GameWin extends JFrame {
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 关闭socket
+     */
     public void closeSocket(){
         try {
             server.close();
         }catch (Exception e){e.printStackTrace();}
     }
 
+    /**
+     * 游戏菜单界面绘制
+     */
     public void window(){
         //设置窗口属性
         this.setVisible(true);
@@ -109,6 +125,10 @@ public class GameWin extends JFrame {
         });
     }
 
+    /**
+     * 绘制方法
+     * @param g the specified Graphics window
+     */
     @Override
     public void paint(Graphics g){
         try {

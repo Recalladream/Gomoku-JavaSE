@@ -10,6 +10,9 @@ import java.awt.event.MouseEvent;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 用户密码找回与修改类
+ */
 public class Retrieve {
     ObjectOutputStream obputFW;
     ObjectInputStream obgetFW;
@@ -31,6 +34,20 @@ public class Retrieve {
     JButton wzcodebut;
     JButton wgcodebut;
 
+    /**
+     * 构造方法
+     * @param dluck
+     * @param pan
+     * @param bjLab
+     * @param drimage
+     * @param zbox
+     * @param wzcodesmg
+     * @param wgcodesmg
+     * @param wzcodebut
+     * @param wgcodebut
+     * @param obputFW
+     * @param obgetFW
+     */
     public Retrieve(JFrame dluck,JPanel pan,JLabel bjLab,ImageIcon drimage,Box zbox,JLabel wzcodesmg,JLabel wgcodesmg,JButton wzcodebut,JButton wgcodebut,ObjectOutputStream obputFW,ObjectInputStream obgetFW){
         this.dluck=dluck;
         this.pan=pan;
@@ -46,10 +63,16 @@ public class Retrieve {
         initzj();
     }
 
+    /**
+     * 促使和组件
+     */
     private void initzj(){
         cdbox=Box.createHorizontalBox();
     }
 
+    /**
+     * 密码修改界面
+     */
     private void initwzbox(){
         wzbox=Box.createVerticalBox();
 
@@ -243,6 +266,9 @@ public class Retrieve {
         });
     }
 
+    /**
+     * 密码找回界面
+     */
     private void initwgbox(){
         wgbox=Box.createVerticalBox();
 
@@ -456,6 +482,9 @@ public class Retrieve {
 
     }
 
+    /**
+     * 绘制选择菜单
+     */
     public void retrievalInterface(){
         dluck.setTitle("账号或密码找回");
         bjLab.setIcon(null);
